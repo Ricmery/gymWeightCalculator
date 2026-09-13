@@ -1,3 +1,8 @@
+#Make Sure not to committ a database with real data to github. This is a test database for the purpose of this project.
+#Will create an intance when run on a local machine. 
+
+#Plan is to use tailscale for user to connect via phone
+
 import sqlite3
 
 DATABASE = "gyms.db"

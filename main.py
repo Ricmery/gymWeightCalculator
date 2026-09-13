@@ -1,4 +1,3 @@
-
 from nicegui import ui
 
 # =========================================================
@@ -8,17 +7,19 @@ from nicegui import ui
 ui.query('body').style(
     'margin: 0;'
     'background-color: #202020;'
+    'overflow: hidden;'
+    'touch-action: none;'
 )
 
-# ---------------------------------------------------------
-# Main container
-# ---------------------------------------------------------
+# =========================================================
+# Main Application
+# =========================================================
 
 with ui.column().classes(
-    'w-full min-h-screen items-center justify-center p-4'
+    'w-full h-screen items-center justify-center p-4'
 ):
     with ui.column().classes(
-        'w-full max-w-2xl'
+        'w-full max-w-2xl h-full'
     ):
         # -------------------------------------------------
         # Header
@@ -37,21 +38,21 @@ with ui.column().classes(
 
         ui.separator().classes('my-2')
 
-        # -------------------------------------------------
-        # Swipeable pages
-        # -------------------------------------------------
+        # =================================================
+        # Main Horizontal Swipe Navigation
+        # =================================================
 
         with ui.carousel(
             value='calculator'
         ).props(
             'animated swipeable infinite'
         ).classes(
-            'w-full'
-        ) as carousel:
+            'w-full flex-1'
+        ):
 
-            # =================================================
-            # CALCULATOR PAGE
-            # =================================================
+            # =============================================
+            # CALCULATOR
+            # =============================================
 
             with ui.carousel_slide(
                 name='calculator'
@@ -59,7 +60,9 @@ with ui.column().classes(
                 with ui.column().classes(
                     'w-full gap-4'
                 ):
-                    ui.label('Calculator').classes(
+                    ui.label(
+                        'Calculator'
+                    ).classes(
                         'text-xl sm:text-2xl font-bold text-white'
                     )
 
@@ -67,7 +70,9 @@ with ui.column().classes(
                         ['GymTest LB', 'GymTest KG'],
                         value='GymTest LB',
                         label='Gym'
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     with ui.row().classes(
                         'w-full gap-2'
@@ -76,13 +81,17 @@ with ui.column().classes(
                             ['LB', 'KG'],
                             value='LB',
                             label='Unit'
-                        ).classes('flex-1')
+                        ).classes(
+                            'flex-1'
+                        )
 
                         ui.number(
                             label='Goal Weight',
                             value=180,
                             format='%.2f'
-                        ).classes('flex-[2]')
+                        ).classes(
+                            'flex-[2]'
+                        )
 
                     ui.button(
                         'CALCULATE'
@@ -90,9 +99,9 @@ with ui.column().classes(
                         'w-full'
                     )
 
-                    # -----------------------------------------
-                    # Mock result
-                    # -----------------------------------------
+                    # -------------------------------------
+                    # Mock Result
+                    # -------------------------------------
 
                     with ui.card().classes(
                         'w-full'
@@ -130,9 +139,9 @@ with ui.column().classes(
                                     'text-lg p-3'
                                 )
 
-            # =================================================
-            # GYM PAGE
-            # =================================================
+            # =============================================
+            # GYM
+            # =============================================
 
             with ui.carousel_slide(
                 name='gym'
@@ -140,20 +149,26 @@ with ui.column().classes(
                 with ui.column().classes(
                     'w-full gap-4'
                 ):
-                    ui.label('My Gym').classes(
+                    ui.label(
+                        'My Gym'
+                    ).classes(
                         'text-xl sm:text-2xl font-bold text-white'
                     )
 
                     ui.input(
                         label='Gym Name',
                         value='GymTest LB'
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     ui.select(
                         ['LB', 'KG'],
                         value='LB',
                         label='Default Unit'
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     ui.button(
                         'SAVE GYM'
@@ -169,10 +184,6 @@ with ui.column().classes(
                         'text-lg font-bold'
                     )
 
-                    # -----------------------------------------
-                    # Inventory
-                    # -----------------------------------------
-
                     plates = [
                         ('2.5 LB', 2),
                         ('5 LB', 4),
@@ -186,7 +197,9 @@ with ui.column().classes(
                         with ui.row().classes(
                             'w-full items-center justify-between'
                         ):
-                            ui.label(weight).classes(
+                            ui.label(
+                                weight
+                            ).classes(
                                 'text-lg'
                             )
 
@@ -196,9 +209,9 @@ with ui.column().classes(
                                 'text-lg'
                             )
 
-            # =================================================
-            # ADD PLATE PAGE
-            # =================================================
+            # =============================================
+            # ADD PLATE
+            # =============================================
 
             with ui.carousel_slide(
                 name='add'
@@ -206,20 +219,26 @@ with ui.column().classes(
                 with ui.column().classes(
                     'w-full gap-4'
                 ):
-                    ui.label('Add Plate').classes(
+                    ui.label(
+                        'Add Plate'
+                    ).classes(
                         'text-xl sm:text-2xl font-bold text-white'
                     )
 
                     ui.number(
                         label='Weight',
                         value=45
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     ui.select(
                         ['LB', 'KG'],
                         value='LB',
                         label='Unit'
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     ui.select(
                         [
@@ -232,13 +251,17 @@ with ui.column().classes(
                         ],
                         value='None',
                         label='Color'
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     ui.number(
                         label='Quantity',
                         value=2,
                         min=1
-                    ).classes('w-full')
+                    ).classes(
+                        'w-full'
+                    )
 
                     ui.button(
                         'ADD TO INVENTORY'
@@ -246,63 +269,150 @@ with ui.column().classes(
                         'w-full'
                     )
 
-            # =================================================
-            # SETTINGS PAGE
-            # =================================================
 
-            with ui.carousel_slide(
-                name='settings'
-            ):
-                with ui.column().classes(
-                    'w-full gap-4'
-                ):
-                    ui.label('Settings').classes(
-                        'text-xl sm:text-2xl font-bold text-white'
-                    )
+# =========================================================
+# Settings Panel
+# =========================================================
 
-                    ui.switch(
-                        'Show opposite unit',
-                        value=True
-                    )
+with ui.element('div').classes(
+    'fixed left-0 top-0'
+    ' w-full'
+    ' bg-gray-900'
+    ' rounded-b-3xl'
+    ' shadow-2xl'
+    ' p-5'
+    ' z-50'
+    ' -translate-y-full'
+    ' transition-transform'
+    ' duration-300'
+    ' select-none'
+):
 
-                    ui.switch(
-                        'Show colors',
-                        value=True
-                    )
-
-                    ui.switch(
-                        'Show plate count',
-                        value=True
-                    )
-
+    with ui.column().classes(
+        'w-full max-w-2xl mx-auto gap-4'
+    ):
         # -------------------------------------------------
-        # Bottom Navigation
+        # Drag Handle
         # -------------------------------------------------
 
-        ui.separator().classes('my-2')
-
-        with ui.row().classes(
-            'w-full justify-around'
+        with ui.element('div').classes(
+            'w-full flex justify-center'
         ):
-            ui.button(
-                'Calculator',
-                on_click=lambda: carousel.set_value('calculator')
-            ).props('flat')
+            ui.element('div').classes(
+                'w-14 h-1.5 bg-gray-500 rounded-full'
+            )
 
-            ui.button(
-                'Gym',
-                on_click=lambda: carousel.set_value('gym')
-            ).props('flat')
+        # -------------------------------------------------
+        # Title
+        # -------------------------------------------------
 
-            ui.button(
-                'Add Plate',
-                on_click=lambda: carousel.set_value('add')
-            ).props('flat')
+        ui.label(
+            'Settings'
+        ).classes(
+            'text-2xl font-bold text-white text-center'
+        )
 
-            ui.button(
-                'Settings',
-                on_click=lambda: carousel.set_value('settings')
-            ).props('flat')
+        # -------------------------------------------------
+        # Settings
+        # -------------------------------------------------
+
+        ui.switch(
+            'Show opposite unit',
+            value=True
+        )
+
+        ui.switch(
+            'Show colors',
+            value=True
+        )
+
+        ui.switch(
+            'Show plate count',
+            value=True
+        )
+
+        ui.switch(
+            'Show weight difference',
+            value=True
+        )
+
+        ui.separator()
+
+        ui.label(
+            'Swipe up to close'
+        ).classes(
+            'text-sm text-gray-400 text-center'
+        )
+
+
+# =========================================================
+# Swipe JavaScript
+# =========================================================
+
+ui.add_body_html('''
+<script>
+let startY = 0;
+let currentY = 0;
+let settingsOpen = false;
+
+document.addEventListener('touchstart', function(event) {
+    startY = event.touches[0].clientY;
+    currentY = startY;
+}, { passive: true });
+
+document.addEventListener('touchmove', function(event) {
+    currentY = event.touches[0].clientY;
+}, { passive: true });
+
+document.addEventListener('touchend', function(event) {
+    const settingsPanel = document.querySelector(
+        '.fixed.left-0.top-0'
+    );
+
+    if (!settingsPanel) {
+        return;
+    }
+
+    const difference = currentY - startY;
+    const swipeDistance = 70;
+
+    // -------------------------------------------------
+    // Swipe DOWN = Open Settings
+    // -------------------------------------------------
+
+    if (!settingsOpen && difference > swipeDistance) {
+        settingsPanel.classList.remove(
+            '-translate-y-full'
+        );
+
+        settingsPanel.classList.add(
+            'translate-y-0'
+        );
+
+        settingsOpen = true;
+    }
+
+    // -------------------------------------------------
+    // Swipe UP = Close Settings
+    // -------------------------------------------------
+
+    if (settingsOpen && difference < -swipeDistance) {
+        settingsPanel.classList.remove(
+            'translate-y-0'
+        );
+
+        settingsPanel.classList.add(
+            '-translate-y-full'
+        );
+
+        settingsOpen = false;
+    }
+
+    startY = 0;
+    currentY = 0;
+}, { passive: true });
+</script>
+''')
 
 
 # =========================================================
@@ -310,7 +420,7 @@ with ui.column().classes(
 # =========================================================
 
 ui.run(
-    title='Gym Weight Assistant',
+    title='Plate Calculator',
     host='0.0.0.0',
     port=8080
 )
