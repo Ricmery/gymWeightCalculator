@@ -310,7 +310,7 @@ with ui.column().classes(
 # =========================================================
 
 ui.run(
-    title='Plate Calculator',
+    title='Gym Weight Assistant',
     host='0.0.0.0',
     port=8080
 )
