@@ -1,3 +1,8 @@
+#Weight Calculator and Barbell Plate Setup Finder
+
+#At this point, Only God know how this works in it's entirety. I will try to add comments and documentation as I go, but it is a work in progress.
+#If you are reading this, and you are not me, you are probably confused. I am too. But it works, and that is what matters.
+
 from nicegui import ui
 import database
 import calculator
